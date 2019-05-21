@@ -5,6 +5,5 @@
         public const int Exception = 2;
         public const int Error = 1;
         public const int Ok = 0;
-
     }
 }

@@ -1,20 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using McMaster.Extensions.CommandLineUtils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
-using Newtonsoft.Json.Linq;
-
-namespace Alphacloud.DotNet.ReadBin.Commands
+﻿namespace Alphacloud.DotNet.ReadBin.Commands
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using McMaster.Extensions.CommandLineUtils;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Bson;
+    using Newtonsoft.Json.Linq;
+
+
     [Command("bson", Description = "Dump BSON as JSON")]
     internal class ReadBsonCommand : BaseReadCommand
     {
-        private static readonly Encoding Utf8NoBom = new UTF8Encoding(false);
-
         [Option(ShortName = "arr", LongName = "array", Description = "Read object as an array")]
         public bool IsArray { get; set; }
 
@@ -39,7 +38,7 @@ namespace Alphacloud.DotNet.ReadBin.Commands
                     .ConfigureAwait(false);
             }
 
-            var enc = AddBom ? Encoding.UTF8 : Utf8NoBom;
+            var enc = AddBom ? Encoding.UTF8 : Encodings.Utf8NoBom;
             var writer = new JsonTextWriter(new StreamWriter(output, enc, 1024, true));
             if (IndentOutput)
                 writer.Formatting = Formatting.Indented;
