@@ -1,0 +1,45 @@
+﻿<Project>
+
+  <PropertyGroup Label="Build">
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <SignAssembly>True</SignAssembly>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <Authors>shatl</Authors>
+    <Company>Alphacloud</Company>
+    <Copyright>(c) Alphacloud</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/alphacloud/dotnet-readbin</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/1.0.0</PackageReleaseNotes>
+    <PackageTags>dotnet-cli bson messagepack alphacloud</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/alphacloud/dotnet-readbin</RepositoryUrl>
+    <Title>dotnet-readbin</Title>
+  </PropertyGroup>
+
+  <PropertyGroup Label="SourceLink">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(MSBuildProjectName.Contains(Tests))' == true ">
+    <NoWarn>$(NoWarn);0618;1591</NoWarn>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>False</IsPackable>
+  </PropertyGroup>
+
+</Project>

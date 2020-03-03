@@ -1,12 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
-using McMaster.Extensions.CommandLineUtils;
-
-namespace Alphacloud.DotNet.ReadBin.Commands
+﻿namespace Alphacloud.DotNet.ReadBin.Commands
 {
+    using System;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using JetBrains.Annotations;
+    using McMaster.Extensions.CommandLineUtils;
+
+
     [HelpOption("--help")]
     internal abstract class BaseReadCommand
     {

@@ -7,7 +7,7 @@ pull_requests:
 nuget:
   disable_publish_on_pr: true
 
-os: Visual Studio 2019 Preview
+os: Visual Studio 2019
 
 environment:
   # Set the DOTNET_SKIP_FIRST_TIME_EXPERIENCE environment variable to stop wasting time caching packages
@@ -17,10 +17,11 @@ environment:
   coveralls_repo_token:
     secure: 7aa9OTSJRpXsKrrpolpHLDpJatVclMkv5exfxK2MIaf1P2orWsYpJEfT7R1Pln+9
   CAKE_SETTINGS_SKIPVERIFICATION: true
-  GITHUB_USER:
-    secure: 5NfHPjw31vB/XxJqwpHp3cl3n/9F7PTUVXhMIqRSDJE=
-  GITHUB_PASSWORD:
-    secure: 9gArAAMTQRHIsSZcJ+87GM+kaSfsBlouuFHtBR1hWBY=
+  GITHUB_TOKEN:
+    secure: SakrMxbclSjNzFQxv8sA35OhulfvNm9VqHBEOgQrebPaF/Bv7AmZRsT8/YEfSQED
+
+install:
+  - ps: ./dotnet-install.ps1  -Version 3.1.102 -InstallDir "C:\Program Files\dotnet"
 
 build_script:
   - ps: ./build.ps1

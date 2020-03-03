@@ -1,21 +1,22 @@
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Alphacloud.DotNet.ReadBin.Commands;
-using FluentAssertions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Xunit;
-
 namespace Alphacloud.DotNet.ReadBin.Tests
 {
+    using System;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Commands;
+    using FluentAssertions;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Xunit;
+
+
     public class BsonTests : IDisposable
     {
         private Stream _input;
         private readonly MemoryStream _output;
         private readonly JsonTextReader _outputReader;
-        private ReadBsonCommand _command;
+        private readonly ReadBsonCommand _command;
 
         public BsonTests()
         {
@@ -46,7 +47,6 @@ namespace Alphacloud.DotNet.ReadBin.Tests
             dump["string"].Value<string>().Should().Be("string");
             dump["int"].Value<int>().Should().Be(100);
             dump["boolean"].Value<bool>().Should().BeTrue();
-
         }
     }
 }

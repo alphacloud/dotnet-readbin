@@ -13,27 +13,31 @@ export:
   multiline-regex: true
 
 issue-labels-include:
-- breaking change
-- bug
-- documentation
-- duplicate
-- enhancement
-- feature
-- sample
+  - breaking change
+  - bug
+  - build
+  - dependencies
+  - documentation
+  - duplicate
+  - enhancement
+  - feature
+  - sample
+  - question
+  - wontfix
 
 issue-labels-exclude:
-- 0 - Backlog
-- 1 - Ready
-- 2 - Working
-- 3 - Review
-- 4 - Done
-- blocked
-- build
-- invalid
-- no-response
-- question
-- ready
-- wontfix
+  - 0 - Backlog
+  - 1 - Ready
+  - 2 - Working
+  - 3 - Review
+  - 4 - Done
+  - blocked
+  - invalid
+  - help-wanted
+  - no-response
+  - question
+  - ready
+  - wontfix
 
 issue-labels-alias:
   - name: breaking change
@@ -42,7 +46,10 @@ issue-labels-alias:
   - name: bug
     header: Bug fixed
     plural: Bugs fixed
-  - name:    documentation
+  - name: dependencies
+    header: Dependency upgraded
+    plural: Dependencies upgraded
+  - name: documentation
     header:  Documentation
     plural:  Documentation
   - name: duplicate
@@ -57,6 +64,6 @@ issue-labels-alias:
   - name: sample
     header: Sample
     plural: Samples
-  - name: dependencies
-    header: Dependency upgraded
-    plural: Dependencies upgraded
+  - name: build
+    header: Build improvement
+    plural: Build improvements

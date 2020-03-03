@@ -1,43 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-   <OutputType>Exe</OutputType>
+  <PropertyGroup Label="Build">
+    <OutputType>Exe</OutputType>
     <IsPackable>true</IsPackable>
     <PackAsTool>true</PackAsTool>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
     <AssemblyName>dotnet-readbin</AssemblyName>
     <Description>A simple tool for displaying human-readable representation of binary serialized data.</Description>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>Alphacloud.DotNet.ReadBin</RootNamespace>  
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+    <RootNamespace>Alphacloud.DotNet.ReadBin</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
-    <Authors>shatl</Authors>
     <PackageId>dotnet-readbin</PackageId>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/alphacloud/dotnet-readbin</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/1.0.0</PackageReleaseNotes>
     <PackageTags>dotnet-cli bson messagepack alphacloud</PackageTags>
-    <RepositoryType>git</RepositoryType>
     <Title>dotnet-readbin</Title>
   </PropertyGroup>
 
-
-  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
-    <DebugType>portable</DebugType>
- </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="all" />
-    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
-    <PackageReference Include="MessagePack" Version="1.7.3.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="all" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.5.1" />
+    <PackageReference Include="MessagePack" Version="2.1.90" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
   </ItemGroup>
 

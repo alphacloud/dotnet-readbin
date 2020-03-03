@@ -1,16 +1,17 @@
-﻿using System.Threading.Tasks;
-using Alphacloud.DotNet.ReadBin.Commands;
-using JetBrains.Annotations;
-using McMaster.Extensions.CommandLineUtils;
-
-namespace Alphacloud.DotNet.ReadBin
+﻿namespace Alphacloud.DotNet.ReadBin
 {
+    using System.Threading.Tasks;
+    using Commands;
+    using JetBrains.Annotations;
+    using McMaster.Extensions.CommandLineUtils;
+
+
     [Command(
         Name = "dotnet readbin",
         FullName = "dotnet-readbin",
         Description = "Displays binary serialized data in human readable format.",
         ExtendedHelpText = "Application reads console input")]
-    [Subcommand(typeof(ReadBsonCommand))]
+    [Subcommand(typeof(ReadBsonCommand), typeof(ReadMessagePackCommand))]
     [HelpOption]
     public class ReadBinCommand
     {
