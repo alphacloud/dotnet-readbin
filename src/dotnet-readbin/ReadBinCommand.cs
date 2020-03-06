@@ -11,7 +11,7 @@
         FullName = "dotnet-readbin",
         Description = "Displays binary serialized data in human readable format.",
         ExtendedHelpText = "Application reads console input")]
-    [Subcommand(typeof(ReadBsonCommand), typeof(ReadMessagePackCommand))]
+    [Subcommand(typeof(ReadBsonCommand), typeof(ReadMessagePackCommand), typeof(ReadHexCommand))]
     [HelpOption]
     public class ReadBinCommand
     {
