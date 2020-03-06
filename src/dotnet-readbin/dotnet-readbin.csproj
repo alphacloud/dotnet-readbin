@@ -7,7 +7,6 @@
     <LangVersion>latest</LangVersion>
     <AssemblyName>dotnet-readbin</AssemblyName>
     <Description>A simple tool for displaying human-readable representation of binary serialized data.</Description>
-    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
     <RootNamespace>Alphacloud.DotNet.ReadBin</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <DebugSymbols>true</DebugSymbols>

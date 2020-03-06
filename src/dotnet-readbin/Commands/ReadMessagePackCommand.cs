@@ -13,11 +13,14 @@
         /// <inheritdoc />
         internal override async Task<int> Dump(Stream input, Stream output, CancellationToken cancellationToken)
         {
-            var bytes = new byte[input.Length];
-            await input.ReadAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
+            string json;
+            using (var ms = new MemoryStream())
+            {
+                await input.CopyToAsync(ms, 1024, cancellationToken).ConfigureAwait(false);
 
+                json = MessagePackSerializer.ConvertToJson(ms.ToArray());
+            }
 
-            var json = MessagePackSerializer.ConvertToJson(bytes);
             using (var writer = new StreamWriter(output, Encodings.Utf8NoBom, 512, true))
             {
                 await writer.WriteAsync(json).ConfigureAwait(false);
