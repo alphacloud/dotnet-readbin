@@ -37,7 +37,7 @@ namespace Alphacloud.DotNet.ReadBin.Tests
         public async Task CanDump()
         {
             _input = GetType().Assembly.GetManifestResourceStream("Alphacloud.DotNet.ReadBin.Tests.Resources.SimplePayload.bson");
-            var res = await _command.Dump(_input, _output, CancellationToken.None).ConfigureAwait(false);
+            var res = await _command.Transform(_input, _output, CancellationToken.None).ConfigureAwait(false);
             res.Should().Be(0);
 
             _output.Position = 0;

@@ -8,18 +8,31 @@
     using McMaster.Extensions.CommandLineUtils;
 
 
+    /// <summary>
+    ///     Base class for read commands.
+    /// </summary>
     [HelpOption("--help")]
-    internal abstract class BaseReadCommand
+    public abstract class BaseReadCommand
     {
+        /// <summary>
+        ///     Input file name.
+        /// </summary>
         [Option(ShortName = "in", LongName = "input-file",
             Description = "Input file name (console, if not specified).")]
         [FileExists]
         public string InputFileName { get; set; }
 
+        /// <summary>
+        ///     Output file name.
+        /// </summary>
         [Option(ShortName = "out", LongName = "output-file",
             Description = "Input file name (console, if not specified).")]
         public string OutputFileName { get; set; }
 
+        /// <summary>
+        ///     Returns stream for input data.
+        /// </summary>
+        /// <returns></returns>
         protected Stream GetInputStream()
         {
             return string.IsNullOrEmpty(InputFileName)
@@ -27,6 +40,10 @@
                 : File.OpenRead(InputFileName);
         }
 
+        /// <summary>
+        ///     Returns stream to output data.
+        /// </summary>
+        /// <returns></returns>
         protected Stream GetOutputStream()
         {
             return string.IsNullOrEmpty(OutputFileName)
@@ -34,18 +51,24 @@
                 : new FileStream(OutputFileName, FileMode.Create);
         }
 
+        /// <summary>
+        ///     Executes transformation.
+        /// </summary>
+        /// <returns>Exit code to return to calling process, <see cref="ExitCodes" />.</returns>
         [UsedImplicitly]
         public virtual async Task<int> OnExecute(CommandLineApplication app, IConsole console)
         {
-            using (var input = GetInputStream())
+            var input = GetInputStream();
+            await using (input.ConfigureAwait(false))
             {
-                using (var output = GetOutputStream())
+                var output = GetOutputStream();
+                await using (output.ConfigureAwait(false))
                 {
-                    return await Dump(input, output, CancellationToken.None).ConfigureAwait(false);
+                    return await Transform(input, output, CancellationToken.None).ConfigureAwait(false);
                 }
             }
         }
 
-        internal abstract Task<int> Dump(Stream input, Stream output, CancellationToken cancellationToken);
+        internal abstract Task<int> Transform(Stream input, Stream output, CancellationToken cancellationToken);
     }
 }

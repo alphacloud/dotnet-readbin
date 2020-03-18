@@ -10,12 +10,17 @@
     using McMaster.Extensions.CommandLineUtils;
 
 
-    [Command("hex", Description = "Convert hex encoded text to binary")]
-    internal class ReadHexCommand : BaseReadCommand
+    /// <summary>
+    ///     Transform hex encoded data.
+    /// </summary>
+    [Command("hex", Description = "Convert hex encoded text to binary.",
+        ExtendedHelpText = "Following characters are considered as white-spaces and skipped: Tab, Space, '-' and new line."
+    )]
+    public class ReadHexCommand : BaseReadCommand
     {
-        private static readonly char[] _whiteSpaces = new[]
+        private static readonly char[] WhiteSpaces = new[]
         {
-            ' ', '\x0D', '\x0A', '\x09'
+            ' ', '-', '\x0D', '\x0A', '\x09'
         }.OrderBy(x => x).ToArray();
 
         private static readonly IReadOnlyDictionary<char, byte> Hex = new Dictionary<char, byte>(16)
@@ -35,13 +40,13 @@
             ['c'] = 12,
             ['d'] = 13,
             ['e'] = 14,
-            ['f'] = 15,
+            ['f'] = 15
         };
 
         /// <inheritdoc />
         /// <exception cref="T:System.InvalidOperationException">Unexpected character in input</exception>
         /// <exception cref="T:System.IO.IOException">An I/O error occurs.</exception>
-        internal override async Task<int> Dump(Stream input, Stream output, CancellationToken cancellationToken)
+        internal override async Task<int> Transform(Stream input, Stream output, CancellationToken cancellationToken)
         {
             var buf = new byte[2];
             int charIndex = 0;
@@ -55,10 +60,10 @@
                 {
                     var c = char.ToLowerInvariant((char) (nextByte & 0xFF));
                     offset++;
-                    if (Array.BinarySearch(_whiteSpaces, c) >= 0) continue;
+                    if (Array.BinarySearch(WhiteSpaces, c) >= 0) continue;
 
                     if (!Hex.TryGetValue(c, out var hexValue))
-                        throw new InvalidOperationException($"Incorrect hex character '{c}' (0x{(byte) c:X}) at offset {offset}.");
+                        throw new InvalidOperationException($"Incorrect hex character '{c}' (0x{(byte) c:X}) at offset {offset:x2}.");
 
                     buf[charIndex++] = hexValue;
                     if (charIndex == 2)
@@ -69,8 +74,7 @@
                     }
                 }
 
-                if (charIndex != 0)
-                    throw new InvalidOperationException($"Unexpected end of input at offset {offset} (0x{offset:x2}).");
+                if (charIndex != 0) throw new InvalidOperationException($"Unexpected end of input at offset {offset} (0x{offset:x2}).");
             }
 
             return ExitCodes.Ok;
