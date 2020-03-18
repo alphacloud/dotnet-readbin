@@ -11,7 +11,7 @@
     using Newtonsoft.Json.Linq;
 
 
-    [Command("bson", Description = "Dump BSON as JSON")]
+    [Command("bson", Description = "Dump BSON as JSON.")]
     internal class ReadBsonCommand : BaseReadCommand
     {
         [Option(ShortName = "arr", LongName = "array", Description = "Read object as an array")]
@@ -29,7 +29,7 @@
             Description = "Ident output")]
         public bool IndentOutput { get; set; }
 
-        internal override async Task<int> Dump(Stream input, Stream output, CancellationToken cancellationToken)
+        internal override async Task<int> Transform(Stream input, Stream output, CancellationToken cancellationToken)
         {
             JObject obj;
             using (var reader = new BsonDataReader(input, IsArray, DateTimeKindHandling))
