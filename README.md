@@ -46,3 +46,11 @@ Output:
 ```
 {"Id":1,"Value":"Value: 1"}
 ```
+
+# Developmen info
+
+Applicaton targets .NET Core 3.1
+
+Libraries used:
+* [Newtonsoft Json.Bson](https://github.com/JamesNK/Newtonsoft.Json.Bson)
+* [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp)

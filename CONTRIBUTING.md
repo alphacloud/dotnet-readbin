@@ -17,8 +17,9 @@ addressed by pull request, consider creating several PRs.
 
 - Create `releases/version` branch of `develop`
 - Prepare for release -> (produces beta- versions)
+  - Make sure all issues included in release are closed and labelled correctly
 - Merge `releases/version` to `master`
-- Merge `releases/version` to develop
-- Remove releases/
-- Make sure all issues included in release are closed and labelled correctly
-- Tag master with [release/]version -> produces release version
+- Tag `master` with version -> produces release version
+- Update  `develop` branch: `git pull --rebase origin master`
+- Remove `releases/version` branch
+- Review and publish release on GitHub - this manual step to review release notes before publishing
