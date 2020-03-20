@@ -1,0 +1,52 @@
+version: .{build}
+clone_folder: c:\work\dotnet-readbin
+
+pull_requests:
+  do_not_increment_build_number: true
+
+nuget:
+  disable_publish_on_pr: true
+
+os: Visual Studio 2019
+
+environment:
+  # Set the DOTNET_SKIP_FIRST_TIME_EXPERIENCE environment variable to stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  coveralls_repo_token:
+    secure: 7aa9OTSJRpXsKrrpolpHLDpJatVclMkv5exfxK2MIaf1P2orWsYpJEfT7R1Pln+9
+  CAKE_SETTINGS_SKIPVERIFICATION: true
+  GITHUB_TOKEN:
+    secure: SakrMxbclSjNzFQxv8sA35OhulfvNm9VqHBEOgQrebPaF/Bv7AmZRsT8/YEfSQED
+
+install:
+  - ps: ./dotnet-install.ps1  -Version 3.1.102 -InstallDir "C:\Program Files\dotnet"
+
+build_script:
+  - ps: ./build.ps1
+
+test: off
+
+artifacts:
+  - path: artifacts/packages/*.nupkg
+    name: Nugets
+
+deploy:
+  - provider: NuGet
+    name: Pre release
+    api_key:
+      secure: 6mTfswrYx6hJYzdwupTCsUUjXg+I50iqf81rGl6Zly7XlJtjT+KshLk7pNmT3TCN
+    on:
+      branch:
+        - develop
+        - /release\/v.*/
+        - /releases.*/
+        - /hotfixes.*/
+
+  - provider: NuGet
+    name: Tagged release
+    api_key:
+      secure: 6mTfswrYx6hJYzdwupTCsUUjXg+I50iqf81rGl6Zly7XlJtjT+KshLk7pNmT3TCN
+    on:
+      appveyor_repo_tag: true
