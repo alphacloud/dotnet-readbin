@@ -103,14 +103,18 @@ Task("CleanPreviousTestResults")
             DeleteFile(build.Paths.TestCoverageOutputFile);
         DeleteFiles(build.Paths.ArtifactsDir + "/*.trx");
         if (DirectoryExists(build.Paths.TestCoverageReportDir))
-            DeleteDirectory(build.Paths.TestCoverageReportDir, recursive: true);
+            DeleteDirectory(build.Paths.TestCoverageReportDir, new DeleteDirectorySettings 
+            {
+                Force = true,
+                Recursive = true
+            });
     });
 
 Task("GenerateCoverageReport")
     .WithCriteria<BuildInfo>((ctx, build) => build.IsLocal)
     .Does<BuildInfo>(build =>
     {
-        ReportGenerator(build.Paths.TestCoverageOutputFile, build.Paths.TestCoverageReportDir);
+        ReportGenerator((FilePath)build.Paths.TestCoverageOutputFile, build.Paths.TestCoverageReportDir);
     });
 
 Task("UploadCoverage")
@@ -152,7 +156,7 @@ Task("Build")
     .Does<BuildInfo>(build =>
     {
         if (build.IsRelease) {
-            Information("Running {0} build for code coverage", "Debug");
+            Information("Running {0} build to calculate code coverage", "Debug");
             // need Debug build for code coverage
             DotNetCoreBuild(build.Paths.SrcDir, new DotNetCoreBuildSettings {
                 NoRestore = true,

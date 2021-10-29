@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup Label="Build">
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <SignAssembly>True</SignAssembly>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -23,7 +23,7 @@
     <Copyright>(c) Alphacloud</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/alphacloud/dotnet-readbin</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/1.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/5.0.0</PackageReleaseNotes>
     <PackageTags>dotnet-cli bson messagepack alphacloud</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/alphacloud/dotnet-readbin</RepositoryUrl>
