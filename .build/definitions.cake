@@ -1,6 +1,5 @@
 // ADDINS
 #addin nuget:?package=Cake.Coveralls&version=1.1.0
-#addin nuget:?package=Cake.FileHelpers&version=4.0.1
 #addin nuget:?package=Cake.AppVeyor&version=5.0.1
 
 // TOOLS
@@ -15,7 +14,7 @@ public class CodeCoverageSettings
 {
     public string ExcludeByFile { get; set; } = "*/*Designer.cs";
     public string ExcludeByAttribute { get; set; } = "*.ExcludeFromCodeCoverage*";
-    public string ExcludeFilter { get; set; } = "-[Tests*]*;-[*]Microsoft.CodeAnalysis*;-[*]System.Runtime.CompilerServices.*";
+    public string ExcludeFilter { get; set; } = "-[*.Tests]*;-[*]Microsoft.CodeAnalysis*;-[*]System.Runtime.CompilerServices.*";
     public string IncludeFilter { get; set; }
 }
 

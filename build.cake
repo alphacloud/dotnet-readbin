@@ -14,7 +14,7 @@ ProjectSettings settings = new ProjectSettings(
 {
     CodeCoverage =
     {
-        IncludeFilter = "+[ReadBin.Tests]*"
+        IncludeFilter = "+[dotnet-*]*"
     }
 };
 
