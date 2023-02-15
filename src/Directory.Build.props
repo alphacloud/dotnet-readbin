@@ -1,12 +1,13 @@
 ﻿<Project>
 
   <PropertyGroup Label="Build">
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <SignAssembly>True</SignAssembly>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
     <DebugSymbols>True</DebugSymbols>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
@@ -23,7 +24,7 @@
     <Copyright>(c) Alphacloud</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/alphacloud/dotnet-readbin</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/5.0.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/alphacloud/dotnet-readbin/releases/tag/6.0.0</PackageReleaseNotes>
     <PackageTags>dotnet-cli bson messagepack alphacloud</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/alphacloud/dotnet-readbin</RepositoryUrl>
